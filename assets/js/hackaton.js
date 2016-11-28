@@ -1,6 +1,7 @@
+var startLocation = { lat: 36.227712, lng: -115.1398 };
+
 $(document).ready(function() {
-
-
+    // var geocoder = new google.maps.
     // $.get("/maps/geocodes.json", function(geocodes) {
     //     $(geocodes).each(function() {
     //         var address = this.address;
@@ -35,18 +36,12 @@ $(document).ready(function() {
     //         google.maps.event.addListener(marker, 'click', showMarker);
     //     });
     // });
+
+    var map = new google.maps.Map(document.getElementById("hackaton-map"), {
+        zoom: 8,
+        mapTypeId: google.maps.MapTypeId.ROADMAP,
+        center: new google.maps.LatLng(startLocation.lat, startLocation.lng)
+    });
 });
 
-function bacon() {
-    var geocoder = new google.maps.Geocoder();
 
-    var options = {
-        center: new google.maps.LatLng(36.227712, -115.1398),
-        zoom: 8,
-        mapTypeId: google.maps.MapTypeId.ROADMAP
-    };
-
-    var mapObject = document.getElementById("hackaton-map")
-    var map = new google.maps.Map(mapObject, options);
-
-}
