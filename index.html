@@ -14,7 +14,7 @@
 
   <body>
 
-    <div class="container-fluid">
+    <div class="container-fluid" style="margin-top:10px">
       <div class="header clearfix">
         <nav>
           <ul class="nav nav-pills pull-right">
@@ -28,10 +28,25 @@
           FIA23 Events
         </h3>
       </div>
+    </div>
 
-    <div id="hackaton-map" style="witdth: 500px; weight: 500px"></div>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAIDQduuTBadaEczI_Aj6bvkMe54EjzmVs"></script>
+    <div class="container-fluid" style="margin-top: 10px; margin-bottom: 10px">
+      <form class="form-inline" style="float: right">
+        <div class="form-group">
+          <label class="sr-only" for="exampleInputAmount"></label>
+          <div class="input-group">
+            <div class="input-group-addon">Search</div>
+            <input type="text" class="form-control">
+          </div>
+        </div>
+        <button type="submit" class="btn btn-primary">Go!</button>
+      </form>
+    </div>
+    
+    <div id="hackaton-map"></div>
+
     <script src="assets/js/jquery-3.1.1.min.js"></script>
     <script src="assets/js/hackaton.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAqgHHKv9HNKt_JjNhJKvyZ7j0EdFM56Qk&callback=bacon"></script>
   </body>
 </html>

@@ -1,15 +1,6 @@
 $(document).ready(function() {
-    var geocoder = new google.maps.Geocoder();
 
-    var options = {
-        center: new google.maps.LatLng(-23.58611110, -46.6350),
-        zoom: 12,
-        mapTypeId: google.maps.MapTypeId.ROADMAP
-    };
-    
-    var mapObject = document.getElementById("hackaton-map")
-    var map = new google.maps.Map(mapObject, options);
-    
+
     // $.get("/maps/geocodes.json", function(geocodes) {
     //     $(geocodes).each(function() {
     //         var address = this.address;
@@ -45,3 +36,17 @@ $(document).ready(function() {
     //     });
     // });
 });
+
+function bacon() {
+    var geocoder = new google.maps.Geocoder();
+
+    var options = {
+        center: new google.maps.LatLng(-23.58611110, -46.6350),
+        zoom: 12,
+        mapTypeId: google.maps.MapTypeId.ROADMAP
+    };
+
+    var mapObject = document.getElementById("hackaton-map")
+    var map = new google.maps.Map(mapObject, options);
+
+}

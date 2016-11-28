@@ -1,7 +1,13 @@
-body {
-  padding-top: 20px;
-  padding-bottom: 20px;
+#hackaton-map {
+    height: 100%;
 }
+
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
 
 .header,
 .marketing,
@@ -20,11 +26,3 @@ body {
   margin-bottom: 0;
   line-height: 40px;
 }
-
-#hacking-map {
-  display: block;
-  width: 100%;
-  height: 100%;
-}
-
-
