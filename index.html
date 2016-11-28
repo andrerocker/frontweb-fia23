@@ -6,7 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
-    <link rel="icon" href="../../favicon.ico">
 
     <title>FIA23 Events</title>
     <link href="assets/css/bootstrap.min.css" rel="stylesheet">
@@ -30,9 +29,20 @@
         </h3>
       </div>
 
-      <div class="row marketing">
-        
+      <div id="hackaton-map" style="witdth: 500px; weight: 500px">
+        iii
       </div>
-    </div>
+    <script>
+      var map;
+      function initMap() {
+        map = new google.maps.Map(document.getElementById('map'), {
+          center: {lat: -34.397, lng: 150.644},
+          zoom: 8
+        });
+      }
+    </script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAIDQduuTBadaEczI_Aj6bvkMe54EjzmVs"></script>
+    <script src="assets/js/jquery-3.1.1.min.js"></script>
+    <script src="assets/js/hackaton.js"></script>
   </body>
 </html>
