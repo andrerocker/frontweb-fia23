@@ -1,3 +1,5 @@
 ## FIA23 Frontend
 
-To start the project locally run: `start-project` script
+#### Running the project
+
+To start the project locally run: `start-project`, and go to http://localhost:8000/
