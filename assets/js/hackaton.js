@@ -10,8 +10,6 @@ $(document).ready(function() {
     var mapObject = document.getElementById("hackaton-map")
     var map = new google.maps.Map(mapObject, options);
     
-    alert("Yo");
-
     // $.get("/maps/geocodes.json", function(geocodes) {
     //     $(geocodes).each(function() {
     //         var address = this.address;
@@ -46,6 +44,4 @@ $(document).ready(function() {
     //         google.maps.event.addListener(marker, 'click', showMarker);
     //     });
     // });
-
-    $(mapObject).show();
 });
