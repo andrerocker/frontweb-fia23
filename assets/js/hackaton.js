@@ -41,8 +41,8 @@ function bacon() {
     var geocoder = new google.maps.Geocoder();
 
     var options = {
-        center: new google.maps.LatLng(-23.58611110, -46.6350),
-        zoom: 12,
+        center: new google.maps.LatLng(36.227712, -115.1398),
+        zoom: 8,
         mapTypeId: google.maps.MapTypeId.ROADMAP
     };
 
