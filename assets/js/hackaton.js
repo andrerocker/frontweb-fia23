@@ -66,9 +66,7 @@ function renderList() {
     });
 }
 
-$(document).ready(function() {
-    homePage();
-
+function menuActions() {
     $(".nav .map").click(function() {
         $(".nav .link").removeClass("active");
         $(".nav .map").parent().addClass("active");
@@ -84,4 +82,9 @@ $(document).ready(function() {
         $(".list-container").show();
         renderList();
     });
+}
+
+$(document).ready(function() {
+    homePage();
+    menuActions();
 });
