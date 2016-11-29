@@ -1,19 +1,26 @@
 var startLocation = { lat: 36.227712, lng: -115.1398 };
 
-var mockedEvents = [
-    { lat: 36.0864261, lng: -115.2966956, title: "Title I",  message: "Hello I" },
-    { lat: 36.1144088, lng: -115.2396182, title: "Title II", message: "Hello II" },
-    { lat: 37.0433076, lng: -114.5905138, title: "Title III", message: "Hello III" },
-    { lat: 36.8394029, lng: -115.9633305, title: "Title IIII", message: "Heloo IIII" }
-];
+function getEvents(location, callback) {
+    var mockedEvents = [
+        { lat: 36.0864261, lng: -115.2966956, title: "Title I",  message: "Hello I" },
+        { lat: 36.1144088, lng: -115.2396182, title: "Title II", message: "Hello II" },
+        { lat: 37.0433076, lng: -114.5905138, title: "Title III", message: "Hello III" },
+        { lat: 36.8394029, lng: -115.9633305, title: "Title IIII", message: "Heloo IIII" }
+    ];
+
+    // search data on server and pass the response to callback
+    // $.getJSON("endpoint/events?location_or_criteria=dkosadkoasd", function(mockedEvents) {
+    callback(mockedEvents);
+    // }
+}
 
 function homePage() {
     $(".page").hide();
     $(".map-container").show();
-    renderMap();
+    getEvents(startLocation, renderMap);
 }
 
-function renderMap() {
+function renderMap(events) {
     $("#hackaton-map").empty();
 
     var map = new google.maps.Map(document.getElementById("hackaton-map"), {
@@ -22,7 +29,7 @@ function renderMap() {
         center: new google.maps.LatLng(startLocation.lat, startLocation.lng)
     });
 
-    $(mockedEvents).each(function() {
+    $(events).each(function() {
         current = this;
 
         var info_content =
@@ -50,11 +57,11 @@ function renderMap() {
     });
 }
 
-function renderList() {
+function renderList(events) {
     var container = $(".list-container");
     container.empty();
 
-    $(mockedEvents).each(function() {
+    $(events).each(function() {
         var current = this;
         var content =
             "<div class='bs-callout bs-callout-warning' id='callout-helper-context-color-accessibility'>"
@@ -72,7 +79,7 @@ function menuActions() {
         $(".nav .map").parent().addClass("active");
         $(".page").hide();
         $(".map-container").show();
-        renderMap();
+        getEvents(startLocation, renderMap);
     });
 
     $(".nav .list").click(function() {
@@ -80,7 +87,7 @@ function menuActions() {
         $(".nav .list").parent().addClass("active");
         $(".page").hide();
         $(".list-container").show();
-        renderList();
+        getEvents(startLocation, renderList);
     });
 }
 
