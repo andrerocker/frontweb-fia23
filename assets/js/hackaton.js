@@ -1,8 +1,16 @@
 var startLocation = { lat: 36.2509994, lng: -113.6920185 };
 var serviceEndpoint = "https://rrpi5h6iy1.execute-api.us-west-2.amazonaws.com/stage/fiaalerts";
 var currentMap = createMap();
+var markersArray = [];
 
 function createMap() {
+    google.maps.Map.prototype.clearOverlays = function() {
+        for (var i = 0; i < markersArray.length; i++ ) {
+            markersArray[i].setMap(null);
+        }
+        markersArray.length = 0;
+    }
+    
     return new google.maps.Map(document.getElementById("hackaton-map"), {
         zoom: 6,
         mapTypeId: google.maps.MapTypeId.ROADMAP,
@@ -24,6 +32,7 @@ function homePage() {
 
 function renderMap(events) {
     console.log(events);
+   // currentMap.clearOverlays();
    // $("#hackaton-map").empty();
 
     $(events).each(function() {
@@ -37,6 +46,7 @@ function renderMap(events) {
 
         var location = new google.maps.LatLng(current.lat, current.lng);
         var marker = new google.maps.Marker({ map: currentMap, position: location });
+        markersArray.push(marker);
         var info = new google.maps.InfoWindow({ content: info_content });
 
         info.open(currentMap, marker);
