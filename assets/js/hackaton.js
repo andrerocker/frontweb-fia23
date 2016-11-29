@@ -10,16 +10,18 @@ var mockedEvents = [
 function homePage() {
     $(".page").hide();
     $(".map-container").show();
+    renderMap();
 }
 
 function renderMap() {
+    $("#hackaton-map").empty();
+
     var map = new google.maps.Map(document.getElementById("hackaton-map"), {
         zoom: 8,
         mapTypeId: google.maps.MapTypeId.ROADMAP,
         center: new google.maps.LatLng(startLocation.lat, startLocation.lng)
     });
 
-    // $.get("/maps/geocodes.json", function(geocodes) {
     $(mockedEvents).each(function() {
         current = this;
 
@@ -65,9 +67,6 @@ function renderList() {
 }
 
 $(document).ready(function() {
-
-    renderList();
-    renderMap();
     homePage();
 
     $(".nav .map").click(function() {
