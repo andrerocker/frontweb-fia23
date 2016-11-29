@@ -7,6 +7,10 @@ var mockedEvents = [
     { lat: 36.8394029, lng: -115.9633305, title: "Title IIII", message: "Heloo IIII" }
 ];
 
+function homePage() {
+    $(".page").hide();
+    $(".map-container").show();
+}
 
 function renderMap() {
     var map = new google.maps.Map(document.getElementById("hackaton-map"), {
@@ -46,6 +50,7 @@ function renderMap() {
 
 function renderList() {
     var container = $(".list-container");
+    container.empty();
 
     $(mockedEvents).each(function() {
         var current = this;
@@ -63,8 +68,21 @@ $(document).ready(function() {
 
     renderList();
     renderMap();
+    homePage();
 
     $(".nav .map").click(function() {
-        $("#hackaton-map").hide();
+        $(".nav .link").removeClass("active");
+        $(".nav .map").parent().addClass("active");
+        $(".page").hide();
+        $(".map-container").show();
+        renderMap();
+    });
+
+    $(".nav .list").click(function() {
+        $(".nav .link").removeClass("active");
+        $(".nav .list").parent().addClass("active");
+        $(".page").hide();
+        $(".list-container").show();
+        renderList();
     });
 });
