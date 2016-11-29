@@ -8,7 +8,7 @@ var mockedEvents = [
 ];
 
 
-$(document).ready(function() {
+function renderMap() {
     var map = new google.maps.Map(document.getElementById("hackaton-map"), {
         zoom: 8,
         mapTypeId: google.maps.MapTypeId.ROADMAP,
@@ -41,5 +41,30 @@ $(document).ready(function() {
         }
 
         google.maps.event.addListener(marker, 'click', showMarker);
+    });
+}
+
+function renderList() {
+    var container = $(".list-container");
+
+    $(mockedEvents).each(function() {
+        var current = this;
+        var content =
+            "<div class='bs-callout bs-callout-warning' id='callout-helper-context-color-accessibility'>"
+               +"<h4>"+current.title+"</h4>"
+            +"<p>"+current.message+"</p>"
+            +"</div>";
+
+        container.append(content);
+    });
+}
+
+$(document).ready(function() {
+
+    renderList();
+    renderMap();
+
+    $(".nav .map").click(function() {
+        $("#hackaton-map").hide();
     });
 });

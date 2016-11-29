@@ -10,6 +10,7 @@
     <title>FIA23 Events</title>
     <link href="assets/css/bootstrap.min.css" rel="stylesheet">
     <link href="assets/css/hackaton.css" rel="stylesheet">
+    <link href="http://getbootstrap.com/assets/css/docs.min.css" rel="stylesheet">
   </head>
 
   <body>
@@ -18,20 +19,19 @@
       <div class="header clearfix">
         <nav>
           <ul class="nav nav-pills pull-right">
-            <li role="presentation" class="active"><a href="#">Map</a></li>
-            <li role="presentation"><a href="#">List</a></li>
-            <li role="presentation"><a href="#">Report</a></li>
+            <li role="presentation"><a href="#" class="map">Map</a></li>
+            <li role="presentation" class="active"><a href="#" class="list">List</a></li>
           </ul>
         </nav>
 
         <h3 class="text-muted">
           <span class="glyphicon glyphicon-flash" aria-hidden="true"></span>
-          FIA23 Events
+          FIA23
         </h3>
       </div>
     </div>
 
-    <div class="container-fluid" style="margin-top: 10px; margin-bottom: 10px">
+    <div class="container-fluid" style="margin-top: 10px; margin-bottom: 10px;">
       <form class="form-inline" style="float: right">
         <div class="form-group">
           <label class="sr-only" for="exampleInputAmount"></label>
@@ -44,10 +44,15 @@
       </form>
     </div>
 
-    <div id="hackaton-map"></div>
+    <div class="container-fluid list-container" style="display: none">
+      <div class="bs-callout bs-callout-warning" id="callout-helper-context-color-accessibility">
+        <h4>Title</h4>
+        <p>Bacon</p>
+      </div>
+    </div>
 
-        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAqgHHKv9HNKt_JjNhJKvyZ7j0EdFM56Qk"></script>
-
+    <div id="hackaton-map" class="map-container"></div>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAqgHHKv9HNKt_JjNhJKvyZ7j0EdFM56Qk"></script>
     <script src="assets/js/jquery-3.1.1.min.js"></script>
     <script src="assets/js/hackaton.js"></script>
   </body>
