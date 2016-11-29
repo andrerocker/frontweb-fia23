@@ -1,47 +1,45 @@
 var startLocation = { lat: 36.227712, lng: -115.1398 };
 
+var mockedEvents = [
+    { lat: 36.0864261, lng: -115.2966956, title: "Title I",  message: "Hello I" },
+    { lat: 36.1144088, lng: -115.2396182, title: "Title II", message: "Hello II" },
+    { lat: 37.0433076, lng: -114.5905138, title: "Title III", message: "Hello III" },
+    { lat: 36.8394029, lng: -115.9633305, title: "Title IIII", message: "Heloo IIII" }
+];
+
+
 $(document).ready(function() {
-    // var geocoder = new google.maps.
-    // $.get("/maps/geocodes.json", function(geocodes) {
-    //     $(geocodes).each(function() {
-    //         var address = this.address;
-    //         var offer = address.offer;
-
-    //         var info_content =
-    //         "<div class='well' style='width: 320px; margin-top: 10px'>"
-    //             + "<b>Peixe Urbano</b>"
-    //             + "<pre style='background-color: #FFF; margin-top: 2px'>" + offer.title + "</pre>"
-    //             + "<div class='row-fluid'>"
-    //                 + "<div class='span6'>"
-    //                     + "<img src='"+ offer.picture +"'>"
-    //                 + "</div>"
-    //                 + "<div class='span6'>"
-    //                     + "<pre style='background-color: #FFF;'>"
-    //                         + "De: R$ "+ offer.old_price
-    //                         + "\nPor: R$ "+ offer.new_price
-    //                     + "</pre>"
-    //                     + "<a class='btn btn-primary' target='"+offer.title+"' href='"+offer.page+"'> Detalhes </a>"
-    //                 + "</div>"
-    //             + "</div>"
-    //         + "</div>";
-
-    //         var location = new google.maps.LatLng(address.latitude, address.longitude);
-    //         var marker = new google.maps.Marker({ map: map, position: location });
-    //         var info = new google.maps.InfoWindow({ content: info_content });
-
-    //         var showMarker = function() {
-    //             info.open(map, marker);
-    //         }
-
-    //         google.maps.event.addListener(marker, 'click', showMarker);
-    //     });
-    // });
-
     var map = new google.maps.Map(document.getElementById("hackaton-map"), {
         zoom: 8,
         mapTypeId: google.maps.MapTypeId.ROADMAP,
         center: new google.maps.LatLng(startLocation.lat, startLocation.lng)
     });
+
+    // $.get("/maps/geocodes.json", function(geocodes) {
+    $(mockedEvents).each(function() {
+        current = this;
+
+        var info_content =
+            "<div style='width: 320px; margin-top: 10px'>"
+                +"<span class='glyphicon glyphicon-flash' aria-hidden='true'></span>"
+                + "<b>"+ current.title +"</b>"
+                + "<div style='margin-top:2px'>"
+                    + "<div class='span6'>"
+                        + "<pre style='background-color: #FFF;'>"
+                            + current.message
+                        + "</pre>"
+                    + "</div>"
+                + "</div>"
+            + "</div>";
+
+        var location = new google.maps.LatLng(current.lat, current.lng);
+        var marker = new google.maps.Marker({ map: map, position: location });
+        var info = new google.maps.InfoWindow({ content: info_content });
+
+        var showMarker = function() {
+            info.open(map, marker);
+        }
+
+        google.maps.event.addListener(marker, 'click', showMarker);
+    });
 });
-
-
