@@ -1,17 +1,19 @@
-var startLocation = { lat: 36.227712, lng: -115.1398 };
+var startLocation = { lat: 36.2509994, lng: -113.6920185 };
+var serviceEndpoint = "https://rrpi5h6iy1.execute-api.us-west-2.amazonaws.com/stage/fiaalerts";
+var currentMap = createMap();
+
+function createMap() {
+    return new google.maps.Map(document.getElementById("hackaton-map"), {
+        zoom: 6,
+        mapTypeId: google.maps.MapTypeId.ROADMAP,
+        center: new google.maps.LatLng(startLocation.lat, startLocation.lng)
+    });
+}
 
 function getEvents(location, callback) {
-    var mockedEvents = [
-        { lat: 36.0864261, lng: -115.2966956, title: "Title I",  message: "Hello I" },
-        { lat: 36.1144088, lng: -115.2396182, title: "Title II", message: "Hello II" },
-        { lat: 37.0433076, lng: -114.5905138, title: "Title III", message: "Hello III" },
-        { lat: 36.8394029, lng: -115.9633305, title: "Title IIII", message: "Heloo IIII" }
-    ];
-
-    // search data on server and pass the response to callback
-    // $.getJSON("endpoint/events?location_or_criteria=dkosadkoasd", function(mockedEvents) {
-    callback(mockedEvents);
-    // }
+    $.getJSON(serviceEndpoint, function(result) {
+        callback(result.records);
+    });
 }
 
 function homePage() {
@@ -21,13 +23,8 @@ function homePage() {
 }
 
 function renderMap(events) {
-    $("#hackaton-map").empty();
-
-    var map = new google.maps.Map(document.getElementById("hackaton-map"), {
-        zoom: 8,
-        mapTypeId: google.maps.MapTypeId.ROADMAP,
-        center: new google.maps.LatLng(startLocation.lat, startLocation.lng)
-    });
+    console.log(events);
+   // $("#hackaton-map").empty();
 
     $(events).each(function() {
         current = this;
@@ -36,25 +33,19 @@ function renderMap(events) {
             "<div style='width: 320px; margin-top: 10px'>"
                 +"<span class='glyphicon glyphicon-flash' aria-hidden='true'></span>"
                 + "<b>"+ current.title +"</b>"
-                + "<div style='margin-top:2px'>"
-                    + "<div class='span6'>"
-                        + "<pre style='background-color: #FFF;'>"
-                            + current.message
-                        + "</pre>"
-                    + "</div>"
-                + "</div>"
             + "</div>";
 
         var location = new google.maps.LatLng(current.lat, current.lng);
-        var marker = new google.maps.Marker({ map: map, position: location });
+        var marker = new google.maps.Marker({ map: currentMap, position: location });
         var info = new google.maps.InfoWindow({ content: info_content });
 
-        var showMarker = function() {
-            info.open(map, marker);
-        }
-
-        google.maps.event.addListener(marker, 'click', showMarker);
+        info.open(currentMap, marker);
     });
+
+    setTimeout(function() {
+        console.log("polling");
+        getEvents(startLocation, renderMap);
+    }, 5000);
 }
 
 function renderList(events) {
@@ -66,7 +57,6 @@ function renderList(events) {
         var content =
             "<div class='bs-callout bs-callout-warning' id='callout-helper-context-color-accessibility'>"
                +"<h4>"+current.title+"</h4>"
-            +"<p>"+current.message+"</p>"
             +"</div>";
 
         container.append(content);
